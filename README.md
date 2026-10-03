@@ -1,38 +1,33 @@
-# Employee Management System
+# Enterprise Employee & Task Management System
 
-A simple, streamlined web application designed to help organizations manage employee records, track roles, and organize team structures efficiently.
+A multi-service platform designed to streamline employee record management, department hierarchy tracking, and task analytics across organizations. 
 
----
-
-## Features
-
-- **Employee Profiles:** Create, update, view, and delete employee details (CRUD functionality).
-- **Role & Department Tracking:** Categorize employees by department, designation, and status.
-- **Search & Filter:** Quickly locate team members using built-in search and filtering options.
-- **Responsive Interface:** Clean UI built to work across desktop and mobile browsers.
+Built with a modern web frontend, a robust **Java Spring Boot** backend, an asynchronous **Python FastAPI** microservice for analytics, and a relational **SQL** database schema.
 
 ---
 
-## Tech Stack
+## System Architecture & Tech Stack
 
-- **Frontend:** HTML5, CSS3, JavaScript (React / Vanilla JS)
-- **Backend:** Node.js / Express (or Python / Java depending on your setup)
-- **Database:** MongoDB / PostgreSQL / MySQL
+This repository follows a modular, multi-service architecture:
+
+* **Frontend:** HTML5, CSS3, JavaScript (DOM Manipulation & Async Fetch)
+* **Core Backend API:** Java (Spring Boot, Maven via `pom.xml`)
+* **Analytics Microservice:** Python (FastAPI / `main.py`)
+* **Database:** SQL (Relational Schema defined in `schema.sql`)
+* **License:** BSD-2-Clause
 
 ---
 
-## Getting Started
+## Project Structure
 
-Follow these instructions to get a copy of the project running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-Make sure you have the following installed on your machine:
-* [Node.js](https://nodejs.org/) (v16 or higher)
-* [Git](https://git-scm.com/)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone [https://github.com/Manoj-pamidimukkkala/EMPLOYEE-MANAGEMENT.git](https://github.com/Manoj-pamidimukkkala/EMPLOYEE-MANAGEMENT.git)
+```text
+EMPLOYEE-MANAGEMENT/
+│
+├── frontend/             # Web user interface (HTML, CSS, JS app scripts)
+├── src/main/             # Java Spring Boot backend (Controllers, Entities, Repositories)
+│   └── java/             # REST API logic (e.g., TaskController.java)
+├── main.py               # Python FastAPI microservice for task analytics
+├── pom.xml               # Maven configuration & Java dependencies
+├── schema.sql            # Database initialization and relational tables
+├── LICENSE               # BSD 2-Clause License
+└── README.md             # Project documentation
