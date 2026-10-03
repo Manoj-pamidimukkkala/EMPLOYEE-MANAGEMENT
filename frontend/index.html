@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Task System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i data-lucide="shield-check" class="brand-icon"></i>
+                <span class="brand-title">CoreTask Engine</span>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="switchTab('kanban')">
+                    <i data-lucide="layout-grid"></i> Kanban Board
+                </button>
+                <button class="nav-item" onclick="switchTab('table')">
+                    <i data-lucide="list"></i> Task Registry
+                </button>
+                <button class="nav-item" onclick="switchTab('analytics')">
+                    <i data-lucide="activity"></i> Python Analytics
+                </button>
+            </nav>
+            <div class="system-status">
+                <div class="status-indicator online"></div>
+                <span>Java API: Port 8080</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Workspace -->
+        <main class="main-content">
+            <!-- Top App Bar -->
+            <header class="top-bar">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="searchInput" placeholder="Filter tasks by title or assignee..." onkeyup="filterTasks()">
+                </div>
+                <button class="btn btn-primary" onclick="openCreateModal()">
+                    <i data-lucide="plus"></i> New Task
+                </button>
+            </header>
+
+            <!-- Kanban View -->
+            <section id="kanban-view" class="view-panel active">
+                <div class="kanban-board">
+                    <div class="kanban-column" data-status="TODO">
+                        <div class="column-header">
+                            <span class="dot todo"></span>
+                            <h3>TO DO</h3>
+                            <span class="counter" id="count-todo">0</span>
+                        </div>
+                        <div class="task-list" id="list-todo"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="IN_PROGRESS">
+                        <div class="column-header">
+                            <span class="dot progress"></span>
+                            <h3>IN PROGRESS</h3>
+                            <span class="counter" id="count-progress">0</span>
+                        </div>
+                        <div class="task-list" id="list-progress"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="IN_REVIEW">
+                        <div class="column-header">
+                            <span class="dot review"></span>
+                            <h3>IN REVIEW</h3>
+                            <span class="counter" id="count-review">0</span>
+                        </div>
+                        <div class="task-list" id="list-review"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="DONE">
+                        <div class="column-header">
+                            <span class="dot done"></span>
+                            <h3>DONE</h3>
+                            <span class="counter" id="count-done">0</span>
+                        </div>
+                        <div class="task-list" id="list-done"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Table View -->
+            <section id="table-view" class="view-panel">
+                <div class="table-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Assignee</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="task-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Analytics View -->
+            <section id="analytics-view" class="view-panel">
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <h4>Python FastAPI Summary</h4>
+                        <pre id="analytics-json">Loading python microservice data...</pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Create Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Task</h3>
+                <button class="close-btn" onclick="closeCreateModal()">&times;</button>
+            </div>
+            <form id="taskForm" onsubmit="handleTaskSubmit(event)">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="taskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="taskPriority">
+                        <option value="LOW">Low</option>
+                        <option value="MEDIUM" selected>Medium</option>
+                        <option value="HIGH">High</option>
+                        <option value="CRITICAL">Critical</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
